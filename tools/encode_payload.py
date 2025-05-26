@@ -12,9 +12,9 @@ def main():
         raw = f.read()
     encrypted = xor_encrypt(raw, key)
     
-    print("\n==== HEX PAYLOAD ====\n")
+    #print("\n==== HEX PAYLOAD ====\n")
     print(encrypted)
-    print("\nCopy this into $hex = \"...\" in win11_stage1.ps1")
+    #print("\nCopy this into $hex = \"...\" in win11_stage1.ps1")
 
 if __name__ == "__main__":
     main()

